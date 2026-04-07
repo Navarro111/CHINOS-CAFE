@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHINOS CAFE | Café con estilo tecnológico</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <strong>CHINOS CAFE</strong>
+        <span>Sabor familiar · Estilo tecnológico</span>
+      </div>
+      <nav class="nav-inline">
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#sucursales">Sucursales</a>
+        <a href="#contacto">Contacto</a>
+        <a href="./login.html">POS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">☕ Innovación + tradición familiar</div>
+          <h1>CHINOS CAFE<br>una cafetería con identidad única</h1>
+          <p>
+            Disfruta de una experiencia moderna, cálida y visualmente diferente.
+            Dos establecimientos, atención cercana y un sistema digital listo para crecer.
+          </p>
+          <div class="nav-inline">
+            <a class="btn btn-primary" href="#contacto">Quiero información</a>
+            <a class="btn btn-dark" href="./login.html">Entrar al POS</a>
+          </div>
+        </div>
+
+        <aside class="card hero-card">
+          <div class="hero-stat">
+            <strong>2</strong>
+            <span>Establecimientos operativos</span>
+          </div>
+          <div class="hero-stat">
+            <strong>POS + Inventario</strong>
+            <span>Gestión centralizada en Firebase</span>
+          </div>
+          <div class="hero-stat">
+            <strong>Web + Contactos</strong>
+            <span>Formulario conectado a base de datos</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="nosotros">
+      <div class="container">
+        <h2>Una propuesta fresca, tecnológica y familiar</h2>
+        <p class="subtitle">
+          CHINOS CAFE combina cercanía, calidad y una estética visual moderna.
+          El objetivo del proyecto es unificar la presencia web y la operación diaria
+          del negocio sobre Firebase.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Ventas rápidas</h3>
+            <p>Registro de productos, carrito básico, comprobante e historial reciente.</p>
+          </div>
+          <div class="card">
+            <h3>Control de inventario</h3>
+            <p>Stock separado por sucursal, entradas y ajustes desde un panel web.</p>
+          </div>
+          <div class="card">
+            <h3>Contacto organizado</h3>
+            <p>Todos los mensajes del sitio quedan guardados en Firestore.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sucursales">
+      <div class="container">
+        <h2>Nuestras sucursales</h2>
+        <p class="subtitle">
+          Este prototipo contempla dos establecimientos gestionados dentro del mismo sistema.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Sucursal 1</h3>
+            <p>Centro · Atención principal · Operación de caja y stock local.</p>
+          </div>
+          <div class="card">
+            <h3>Sucursal 2</h3>
+            <p>Zona norte · Inventario independiente y ventas por establecimiento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container">
+        <h2>Contacto</h2>
+        <p class="subtitle">
+          Déjanos tus datos y tu mensaje. El formulario se guarda en Firebase Firestore.
+        </p>
+
+        <div class="panel">
+          <form id="contactForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Nombre</label>
+                <input id="name" name="name" required />
+              </div>
+              <div class="field">
+                <label for="email">Correo electrónico</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+              <div class="field">
+                <label for="phone">Teléfono</label>
+                <input id="phone" name="phone" />
+              </div>
+              <div class="field">
+                <label for="branchId">Sucursal de interés</label>
+                <select id="branchId" name="branchId" required>
+                  <option value="sucursal-1">Sucursal 1</option>
+                  <option value="sucursal-2">Sucursal 2</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="subject">Asunto</label>
+              <input id="subject" name="subject" required />
+            </div>
+
+            <div class="field">
+              <label for="message">Mensaje</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+            <p id="contactStatus" class="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      CHINOS CAFE · Prototipo web en HTML + Firebase
+    </div>
+  </footer>
+
+  <script type="module" src="./js/site.js"></script>
+</body>
+</html>
