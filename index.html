@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHINOS CAFE | Café con estilo tecnológico</title>
+  <meta name="description" content="Sitio web oficial de CHINOS CAFE. Café, estilo, tecnología y contacto directo." />
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --bg-2: #121a24;
+      --panel: rgba(16, 23, 34, 0.82);
+      --text: #eef6ff;
+      --muted: #9fb2c9;
+      --primary: #00d1ff;
+      --secondary: #7a5cff;
+      --accent: #b87333;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 15px 40px rgba(0,0,0,0.35);
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(0, 209, 255, 0.10), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(122, 92, 255, 0.14), transparent 26%),
+        linear-gradient(180deg, #0b0f14 0%, #0e1520 45%, #121a24 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      backdrop-filter: blur(14px);
+      background: rgba(8, 12, 18, 0.78);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand strong {
+      color: var(--primary);
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav a {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      transition: 0.25s ease;
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover {
+      color: var(--primary);
+      border-color: rgba(0, 209, 255, 0.45);
+      box-shadow: 0 0 0 4px rgba(0,209,255,0.08);
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(0,209,255,0.10);
+      border: 1px solid rgba(0,209,255,0.20);
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      line-height: 1.02;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 650px;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 14px;
+      padding: 14px 20px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: #09131d;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .card,
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel {
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .stat {
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 26px;
+      max-width: 800px;
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      padding: 24px;
+      transition: 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,209,255,0.25);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .card p {
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .panel {
+      padding: 26px;
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-item {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+    }
+
+    .contact-item h4 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      outline: none;
+      transition: 0.2s ease;
+      font-size: 0.98rem;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(0,209,255,0.45);
+      box-shadow: 0 0 0 4px rgba(0,209,255,0.08);
+    }
+
+    .field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .status {
+      min-height: 24px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .status.success {
+      color: var(--success);
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .footer {
+      padding: 34px 0 50px;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+
+    .mini-note {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .contact-wrapper,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        width: 100%;
+      }
+
+      .nav a {
+        flex: 1 1 auto;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <strong>CHINOS CAFE</strong>
+        <span>Café familiar · Imagen moderna · Firebase Ready</span>
+      </div>
+
+      <nav class="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Sistema</a>
+        <a href="#sucursales">Sucursales</a>
+        <a href="#contacto">Contacto</a>
+        <a href="login.html">POS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge">☕ Café + tecnología + estilo único</span>
+          <h1>CHINOS CAFE<br>experiencia visual moderna para un negocio familiar</h1>
+          <p>
+            Bienvenido a <span class="highlight">CHINOS CAFE</span>, una propuesta diseñada para
+            combinar la calidez de una cafetería familiar con una estética tecnológica,
+            elegante y diferente. Este prototipo está pensado para integrarse con
+            <strong>Firebase</strong> y crecer después hacia un sistema completo con POS,
+            inventario, proveedores, ventas y contactos.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contacto" class="btn btn-primary">Solicitar información</a>
+            <a href="login.html" class="btn btn-secondary">Entrar al POS</a>
+          </div>
+        </div>
+
+        <aside class="card hero-panel">
+          <div class="stat">
+            <strong>2</strong>
+            <span>Establecimientos contemplados en el sistema</span>
+          </div>
+          <div class="stat">
+            <strong>HTML + Firebase</strong>
+            <span>Web pública con formulario conectado a Firestore</span>
+          </div>
+          <div class="stat">
+            <strong>POS escalable</strong>
+            <span>Ventas, inventario, proveedores y comprobantes</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="nosotros">
+      <div class="container">
+        <h2 class="section-title">Sobre CHINOS CAFE</h2>
+        <p class="section-subtitle">
+          Este diseño busca dar una identidad visual fuerte: tonos oscuros, detalles en neón,
+          contrastes elegantes y una sensación tecnológica sin perder la esencia cercana
+          de un negocio familiar.
+        </p>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Identidad de marca</h3>
+            <p>
+              Una estética moderna con presencia visual potente, ideal para un negocio
+              que quiere verse profesional y memorable.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Preparado para crecer</h3>
+            <p>
+              El sitio está pensado para conectarse con módulos posteriores como login,
+              panel administrativo y sistema POS.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Conexión con base de datos</h3>
+            <p>
+              El formulario de contacto guarda la información directamente en Firestore
+              para gestionar clientes potenciales o consultas.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicios">
+      <div class="container">
+        <h2 class="section-title">Sistema contemplado</h2>
+        <p class="section-subtitle">
+          El proyecto está orientado a una solución inicial sobre Firebase, usando una
+          aplicación web con módulos para operación diaria del negocio.
+        </p>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>POS y ventas</h3>
+            <p>
+              Registro de ventas, selección de productos, métodos de pago, historial,
+              comprobante y separación por sucursal.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Inventario por establecimiento</h3>
+            <p>
+              Control de entradas, salidas, ajustes y consulta de stock por cada local.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Proveedores</h3>
+            <p>
+              Registro de proveedores, datos de contacto y relación con compras futuras.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Formulario y seguimiento</h3>
+            <p>
+              Toda solicitud enviada desde esta web queda almacenada para seguimiento
+              administrativo posterior.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sucursales">
+      <div class="container">
+        <h2 class="section-title">Nuestras sucursales</h2>
+        <p class="section-subtitle">
+          El sistema se ha pensado desde el inicio para funcionar con dos establecimientos.
+        </p>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>Sucursal 1</h3>
+            <p>
+              Punto principal de atención, ventas, caja y administración de inventario.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Sucursal 2</h3>
+            <p>
+              Operación independiente con control de stock y ventas por establecimiento.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container">
+        <h2 class="section-title">Contacto</h2>
+        <p class="section-subtitle">
+          Completa el formulario y el mensaje se guardará en Firebase Firestore.
+        </p>
+
+        <div class="panel contact-wrapper">
+          <div class="contact-info">
+            <div class="contact-item">
+              <h4>CHINOS CAFE</h4>
+              <p>Negocio familiar con visión moderna y tecnológica.</p>
+            </div>
+
+            <div class="contact-item">
+              <h4>Objetivo del proyecto</h4>
+              <p>Unificar web pública, contactos y operación POS sobre Firebase.</p>
+            </div>
+
+            <div class="contact-item">
+              <h4>Estado actual</h4>
+              <p>Prototipo listo para conectarse a Firestore y continuar con login + POS.</p>
+            </div>
+          </div>
+
+          <div>
+            <form id="contactForm">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="name">Nombre completo</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+
+                <div class="field">
+                  <label for="email">Correo electrónico</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+
+                <div class="field">
+                  <label for="phone">Teléfono</label>
+                  <input type="text" id="phone" name="phone" />
+                </div>
+
+                <div class="field">
+                  <label for="branchId">Sucursal de interés</label>
+                  <select id="branchId" name="branchId" required>
+                    <option value="sucursal-1">Sucursal 1</option>
+                    <option value="sucursal-2">Sucursal 2</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="subject">Asunto</label>
+                <input type="text" id="subject" name="subject" required />
+              </div>
+
+              <div class="field">
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+              <p id="status" class="status"></p>
+              <p class="mini-note">
+                Importante: reemplaza la configuración Firebase del script por la de tu proyecto real.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      CHINOS CAFE · Prototipo HTML conectado a Firebase Firestore
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+    // ==========================
+    // REEMPLAZA ESTOS DATOS
+    // ==========================
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_PROYECTO.firebaseapp.com",
+      projectId: "TU_PROYECTO",
+      storageBucket: "TU_PROYECTO.appspot.com",
+      messagingSenderId: "TU_MESSAGING_SENDER_ID",
+      appId: "TU_APP_ID"
+    };
+
+    const BUSINESS_ID = "chinos-cafe";
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const contactForm = document.getElementById("contactForm");
+    const status = document.getElementById("status");
+
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      status.textContent = "Enviando mensaje...";
+      status.className = "status";
+
+      const formData = new FormData(contactForm);
+
+      const payload = {
+        name: formData.get("name")?.trim(),
+        email: formData.get("email")?.trim(),
+        phone: formData.get("phone")?.trim(),
+        subject: formData.get("subject")?.trim(),
+        message: formData.get("message")?.trim(),
+        branchId: formData.get("branchId"),
+        status: "nuevo",
+        createdAt: serverTimestamp()
+      };
+
+      try {
+        await addDoc(
+          collection(db, `businesses/${BUSINESS_ID}/contacts`),
+          payload
+        );
+
+        status.textContent = "Mensaje enviado correctamente.";
+        status.className = "status success";
+        contactForm.reset();
+      } catch (error) {
+        console.error(error);
+        status.textContent = "No se pudo enviar el mensaje. Revisa la configuración de Firebase y las reglas.";
+        status.className = "status error";
+      }
+    });
+  </script>
+</body>
+</html>
