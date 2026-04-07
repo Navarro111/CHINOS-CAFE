@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POS | CHINOS CAFE</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <strong>CHINOS CAFE</strong>
+        <span>Sistema POS · Firebase</span>
+      </div>
+
+      <div class="nav-inline">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#productos">Productos</a>
+        <a href="#proveedores">Proveedores</a>
+        <a href="#inventario">Inventario</a>
+        <a href="#ventas">Ventas</a>
+        <span id="userBadge" class="user-badge">Cargando...</span>
+        <button id="logoutBtn">Salir</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:24px; padding-bottom:48px;">
+    <section id="dashboard" class="section">
+      <h2>Dashboard</h2>
+      <p class="subtitle">Resumen rápido del sistema CHINOS CAFE.</p>
+
+      <div class="dashboard-grid">
+        <div class="kpi">
+          <small>Productos</small>
+          <strong id="kpiProducts">0</strong>
+        </div>
+        <div class="kpi">
+          <small>Proveedores</small>
+          <strong id="kpiSuppliers">0</strong>
+        </div>
+        <div class="kpi">
+          <small>Ventas recientes</small>
+          <strong id="kpiSales">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section id="productos" class="section">
+      <h2>Productos</h2>
+      <p class="subtitle">Registro base de productos vendidos en las sucursales.</p>
+
+      <div class="panel">
+        <h3>Nuevo producto</h3>
+        <form id="productForm">
+          <div class="form-grid">
+            <div class="field">
+              <label>Nombre</label>
+              <input id="productName" required />
+            </div>
+            <div class="field">
+              <label>Categoría</label>
+              <input id="productCategory" required />
+            </div>
+            <div class="field">
+              <label>SKU</label>
+              <input id="productSku" required />
+            </div>
+            <div class="field">
+              <label>Precio</label>
+              <input id="productPrice" type="number" step="0.01" required />
+            </div>
+            <div class="field">
+              <label>Costo</label>
+              <input id="productCost" type="number" step="0.01" required />
+            </div>
+            <div class="field">
+              <label>Stock mínimo</label>
+              <input id="productStockMin" type="number" required />
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Guardar producto</button>
+          <p id="productStatus" class="status"></p>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3>Listado de productos</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>SKU</th>
+                <th>Precio</th>
+                <th>Costo</th>
+                <th>Stock mín.</th>
+              </tr>
+            </thead>
+            <tbody id="productsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="proveedores" class="section">
+      <h2>Proveedores</h2>
+      <p class="subtitle">Registro y consulta básica de proveedores.</p>
+
+      <div class="panel">
+        <h3>Nuevo proveedor</h3>
+        <form id="supplierForm">
+          <div class="form-grid">
+            <div class="field">
+              <label>Nombre</label>
+              <input id="supplierName" required />
+            </div>
+            <div class="field">
+              <label>Teléfono</label>
+              <input id="supplierPhone" />
+            </div>
+            <div class="field">
+              <label>Correo</label>
+              <input id="supplierEmail" type="email" />
+            </div>
+            <div class="field">
+              <label>Dirección</label>
+              <input id="supplierAddress" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Notas</label>
+            <textarea id="supplierNotes"></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Guardar proveedor</button>
+          <p id="supplierStatus" class="status"></p>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3>Listado de proveedores</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Dirección</th>
+              </tr>
+            </thead>
+            <tbody id="suppliersTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="inventario" class="section">
+      <h2>Inventario</h2>
+      <p class="subtitle">Control de existencias por establecimiento.</p>
+
+      <div class="panel">
+        <h3>Entrada / ajuste de inventario</h3>
+        <form id="inventoryForm">
+          <div class="form-grid">
+            <div class="field">
+              <label>Sucursal</label>
+              <select id="inventoryBranch" required></select>
+            </div>
+            <div class="field">
+              <label>Producto</label>
+              <select id="inventoryProduct" required></select>
+            </div>
+            <div class="field">
+              <label>Tipo de movimiento</label>
+              <select id="inventoryType" required>
+                <option value="entrada">Entrada</option>
+                <option value="ajuste">Ajuste</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Cantidad</label>
+              <input id="inventoryQty" type="number" min="1" required />
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Guardar movimiento</button>
+          <p id="inventoryStatus" class="status"></p>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3>Stock por sucursal</h3>
+        <div class="field" style="max-width:320px;">
+          <label>Ver inventario de</label>
+          <select id="inventoryViewBranch"></select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>SKU</th>
+                <th>Stock actual</th>
+                <th>Stock mínimo</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="ventas" class="section">
+      <h2>Ventas</h2>
+      <p class="subtitle">Registro de venta, descuento de stock y comprobante.</p>
+
+      <div class="panel">
+        <h3>Nueva venta</h3>
+        <form id="saleForm">
+          <div class="form-grid">
+            <div class="field">
+              <label>Sucursal</label>
+              <select id="saleBranch" required></select>
+            </div>
+            <div class="field">
+              <label>Producto</label>
+              <select id="saleProduct" required></select>
+            </div>
+            <div class="field">
+              <label>Cantidad</label>
+              <input id="saleQty" type="number" min="1" required />
+            </div>
+            <div class="field">
+              <label>Método de pago</label>
+              <select id="salePayment" required>
+                <option value="efectivo">Efectivo</option>
+                <option value="tarjeta">Tarjeta</option>
+                <option value="transferencia">Transferencia</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Cliente (opcional)</label>
+            <input id="saleCustomer" />
+          </div>
+
+          <button class="btn btn-primary" type="submit">Registrar venta</button>
+          <p id="saleStatus" class="status"></p>
+        </form>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Comprobante / Factura interna</h3>
+          <div id="receiptBox" class="receipt">
+            Aún no hay venta registrada en esta sesión.
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Últimas ventas</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Factura</th>
+                  <th>Sucursal</th>
+                  <th>Total</th>
+                  <th>Pago</th>
+                </tr>
+              </thead>
+              <tbody id="salesTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./js/pos.js"></script>
+</body>
+</html>
