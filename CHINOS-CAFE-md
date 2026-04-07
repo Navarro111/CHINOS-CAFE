@@ -1,0 +1,18 @@
+chinos-cafe-firebase/
+│
+├── firebase.json
+├── firestore.rules
+│
+└── public/
+    ├── index.html
+    ├── login.html
+    ├── pos.html
+    │
+    ├── css/
+    │   └── styles.css
+    │
+    └── js/
+        ├── firebase-config.js
+        ├── site.js
+        ├── login.js
+        └── pos.js
